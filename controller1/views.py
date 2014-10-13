@@ -9,9 +9,14 @@ import json
 from src.lib.tools import Coordinate
 from src.lib import geohash
 
-def k_nearest_train(request):
+def k_nearest_train(request,coord):
+
     now_coord=Coordinate()
-    now_coord.set_getjson(json.loads('{"type": "Point", "coordinates": [139.7262337, 35.6987467]}'))
+    if coord :
+        now_coord.lat = float(coord.split(',')[0]) 
+        now_coord.lon = float(coord.split(',')[1]) 
+    else :
+        now_coord.set_getjson(json.loads('{"type": "Point", "coordinates": [139.7262337, 35.6987467]}'))
 
     now_gh = geohash.encode(now_coord.lat,now_coord.lon)[:7]
     f = open('static/metrodata/stationgeohash.json','r')
