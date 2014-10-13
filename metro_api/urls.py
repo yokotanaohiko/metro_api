@@ -10,6 +10,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^redis$', 'controller1.views.redis_check'),
-    url(r'^neartrain$', 'controller1.views.k_nearest_train'),
+    url(r'^neartrain/(?P<coord>.+)$', 'controller1.views.k_nearest_train'),
     url(r'^metron$', 'controller1.views.metro_now'),
 )
